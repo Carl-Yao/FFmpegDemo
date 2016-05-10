@@ -23,6 +23,9 @@
  *
  */
 int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int h,int num);
+int simplest_rgb24_split(char *url,char *urlR,char *urlG,char *urlB, int w, int h,int num);
+int simplest_rgb24_to_yuv420(char *url_in, int w, int h,int num,char *url_out);
+int simplest_pcm32le_split(char *url, char *outUrl_L,char *outUrl_R);
 
 @interface ViewController ()
 {
@@ -97,6 +100,22 @@ int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int
     [btn5 addTarget:self action:@selector(clickPullStreamButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn5];
     
+    UIButton *btn8 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn8.backgroundColor = [UIColor redColor];
+    btn8.frame = CGRectMake(100, 250, 100, 50);
+    [btn8 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn8 setTitle:@"RGB转YUV" forState:UIControlStateNormal];
+    [btn8 addTarget:self action:@selector(clickRGBToYUVButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn8];
+    
+    UIButton *btn9 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn9.backgroundColor = [UIColor redColor];
+    btn9.frame = CGRectMake(0, 250, 100, 50);
+    [btn9 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn9 setTitle:@"RGB分解" forState:UIControlStateNormal];
+    [btn9 addTarget:self action:@selector(clickRGBPlitButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn9];
+    
     UIButton *btn10 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn10.backgroundColor = [UIColor redColor];
     btn10.frame = CGRectMake(0, 300, 100, 50);
@@ -110,7 +129,7 @@ int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int
     btn11.frame = CGRectMake(100, 300, 100, 50);
     [btn11 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn11 setTitle:@"PCM处理" forState:UIControlStateNormal];
-    [btn11 addTarget:self action:@selector(clickYUVPlitButton) forControlEvents:UIControlEventTouchUpInside];
+    [btn11 addTarget:self action:@selector(clickPCMButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn11];
 }
 - (IBAction)clickDecodeButton:(id)sender {
@@ -135,6 +154,11 @@ int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int
     });
 }
 
+- (void)clickRGBToYUVButton
+{
+    simplest_rgb24_to_yuv420([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"susheview2_640x480_rgb24.rgb"] UTF8String], 640, 480,1,[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"susheview2_640x480_yuv420.yuv"] UTF8String]);
+}
+
 - (void)clickYUVPlitButton
 {
     simplest_yuv420_split( [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"test.yuv"] UTF8String],
@@ -143,7 +167,14 @@ int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int
                           [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"testV.y"] UTF8String],1920,1080,193);
 }
 
+- (void)clickRGBPlitButton
+{
+    simplest_rgb24_split([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"susheview2_640x480_rgb24.rgb"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"susheview2_640x480_rgb24_R.y"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"susheview2_640x480_rgb24_G.y"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"susheview2_640x480_rgb24_B.y"] UTF8String], 640, 480, 1);
+}
 
+- (void)clickPCMButton{
+    simplest_pcm32le_split([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"tdjm.pcm"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"tdjmL.pcm"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"tdjmR.pcm"] UTF8String]);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

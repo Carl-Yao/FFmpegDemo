@@ -232,11 +232,11 @@ int simplest_rgb24_to_bmp(const char *rgb24path,int width,int height,const char 
  * @param num  Number of frames to process.
  *
  */
-int simplest_rgb24_split(char *url, int w, int h,int num){
+int simplest_rgb24_split(char *url,char *urlR,char *urlG,char *urlB, int w, int h,int num){
 	FILE *fp=fopen(url,"rb+");
-	FILE *fp1=fopen("output_r.y","wb+");
-	FILE *fp2=fopen("output_g.y","wb+");
-	FILE *fp3=fopen("output_b.y","wb+");
+	FILE *fp1=fopen(urlR,"wb+");
+	FILE *fp2=fopen(urlG,"wb+");
+	FILE *fp3=fopen(urlB,"wb+");
 
 	unsigned char *pic=(unsigned char *)malloc(w*h*3);
 
@@ -649,10 +649,10 @@ int simplest_pcm16le_cut_singlechannel(char *url,int start_num,int dur_num){
  * @param url  Location of PCM file.
  *
  */
-int simplest_pcm16le_split(char *url){
+int simplest_pcm16le_split(char *url, char *outUrl_L,char *outUrl_R){
 	FILE *fp=fopen(url,"rb+");
-	FILE *fp1=fopen("output_l.pcm","wb+");
-	FILE *fp2=fopen("output_r.pcm","wb+");
+	FILE *fp1=fopen(outUrl_L,"wb+");
+	FILE *fp2=fopen(outUrl_R,"wb+");
 
 	unsigned char *sample=(unsigned char *)malloc(4);
 
@@ -669,6 +669,28 @@ int simplest_pcm16le_split(char *url){
 	fclose(fp1);
 	fclose(fp2);
 	return 0;
+}
+
+int simplest_pcm32le_split(char *url, char *outUrl_L,char *outUrl_R){
+    FILE *fp=fopen(url,"rb+");
+    FILE *fp1=fopen(outUrl_L,"wb+");
+    FILE *fp2=fopen(outUrl_R,"wb+");
+    
+    unsigned char *sample=(unsigned char *)malloc(4);
+    
+    while(!feof(fp)){
+        fread(sample,1,8,fp);
+        //L
+        fwrite(sample,1,4,fp1);
+        //R
+        fwrite(sample+4,1,4,fp2);
+    }
+    
+    free(sample);
+    fclose(fp);
+    fclose(fp1);
+    fclose(fp2);
+    return 0;
 }
 
 /**

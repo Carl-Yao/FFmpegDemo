@@ -66,7 +66,7 @@ int simplest_rgb24_to_bmp(const char *rgb24path,int width,int height,const char 
  * @param num  Number of frames to process.
  *
  */
-int simplest_rgb24_split(char *url, int w, int h,int num);
+int simplest_rgb24_split(char *url,char *urlR,char *urlG,char *urlB, int w, int h,int num);
 
 /**
  * Convert RGB24 file to YUV420P file
@@ -161,7 +161,7 @@ int simplest_pcm16le_cut_singlechannel(char *url,int start_num,int dur_num);
  * @param url  Location of PCM file.
  *
  */
-int simplest_pcm16le_split(char *url);
+//int simplest_pcm16le_split(char *url);
 
 /**
  * Halve volume of Left channel of 16LE PCM file
@@ -193,7 +193,7 @@ int simplest_pcm16le_to_wave(const char *pcmpath,int channels,int sample_rate,co
 @implementation TestDataVC
 - (void)testData{
     NSString *inFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"11.pcm"];
-    simplest_pcm16le_split([inFilePath UTF8String]);
+//    simplest_pcm16le_split([inFilePath UTF8String]);
     
     //Test
 //    simplest_yuv420_split("lena_256x256_yuv420p.yuv",256,256,1);
@@ -210,7 +210,7 @@ int simplest_pcm16le_to_wave(const char *pcmpath,int channels,int sample_rate,co
     
     simplest_yuv420_psnr("lena_256x256_yuv420p.yuv","lena_distort_256x256_yuv420p.yuv",256,256,1);
     
-    simplest_rgb24_split("cie1931_500x500.rgb", 500, 500,1);
+//    simplest_rgb24_split("cie1931_500x500.rgb", 500, 500,1);
     
     simplest_rgb24_to_bmp("lena_256x256_rgb24.rgb",256,256,"output_lena.bmp");
     
@@ -218,7 +218,7 @@ int simplest_pcm16le_to_wave(const char *pcmpath,int channels,int sample_rate,co
     
     simplest_rgb24_colorbar(640, 360,"colorbar_640x360.rgb");
     
-    simplest_pcm16le_split("NocturneNo2inEflat_44.1k_s16le.pcm");
+//    simplest_pcm16le_split("NocturneNo2inEflat_44.1k_s16le.pcm");
     
     simplest_pcm16le_halfvolumeleft("NocturneNo2inEflat_44.1k_s16le.pcm");
     
