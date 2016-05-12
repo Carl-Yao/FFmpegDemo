@@ -63,9 +63,9 @@ typedef struct
 	char *buf;                    //! contains the first byte followed by the EBSP
 } NALU_t;
 
-FILE *h264bitstream = NULL;                //!< the bit stream file
-
-int info2=0, info3=0;
+//FILE *h264bitstream = NULL;                //!< the bit stream file
+//
+//int info2=0, info3=0;
 
 static int FindStartCode2 (unsigned char *Buf){
 	if(Buf[0]!=0 || Buf[1]!=0 || Buf[2] !=1) return 0; //0x000001?
@@ -78,7 +78,7 @@ static int FindStartCode3 (unsigned char *Buf){
 }
 
 
-int GetAnnexbNALU (NALU_t *nalu){
+int GetAnnexbNALU (NALU_t *nalu, FILE *h264bitstream, int* info2, int* info3){
 	int pos = 0;
 	int StartCodeFound, rewind;
 	unsigned char *Buf;
@@ -92,14 +92,14 @@ int GetAnnexbNALU (NALU_t *nalu){
 		free(Buf);
 		return 0;
 	}
-	info2 = FindStartCode2 (Buf);
-	if(info2 != 1) {
+	*info2 = FindStartCode2 (Buf);
+	if(*info2 != 1) {
 		if(1 != fread(Buf+3, 1, 1, h264bitstream)){
 			free(Buf);
 			return 0;
 		}
-		info3 = FindStartCode3 (Buf);
-		if (info3 != 1){ 
+		*info3 = FindStartCode3 (Buf);
+		if (*info3 != 1){
 			free(Buf);
 			return -1;
 		}
@@ -113,8 +113,8 @@ int GetAnnexbNALU (NALU_t *nalu){
 		pos = 3;
 	}
 	StartCodeFound = 0;
-	info2 = 0;
-	info3 = 0;
+	*info2 = 0;
+	*info3 = 0;
 
 	while (!StartCodeFound){
 		if (feof (h264bitstream)){
@@ -127,15 +127,15 @@ int GetAnnexbNALU (NALU_t *nalu){
 			return pos-1;
 		}
 		Buf[pos++] = fgetc (h264bitstream);
-		info3 = FindStartCode3(&Buf[pos-4]);
-		if(info3 != 1)
-			info2 = FindStartCode2(&Buf[pos-3]);
-		StartCodeFound = (info2 == 1 || info3 == 1);
+		*info3 = FindStartCode3(&Buf[pos-4]);
+		if(*info3 != 1)
+			*info2 = FindStartCode2(&Buf[pos-3]);
+		StartCodeFound = (*info2 == 1 || *info3 == 1);
 	}
 
 	// Here, we have found another start code (and read length of startcode bytes more than we should
 	// have.  Hence, go back in the file
-	rewind = (info3 == 1)? -4 : -3;
+	rewind = (*info3 == 1)? -4 : -3;
 
 	if (0 != fseek (h264bitstream, rewind, SEEK_CUR)){
 		free(Buf);
@@ -161,7 +161,10 @@ int GetAnnexbNALU (NALU_t *nalu){
  * @param url    Location of input H.264 bitstream file.
  */
 int simplest_h264_parser(char *url){
-
+    FILE *h264bitstream = NULL;                //!< the bit stream file
+    
+    int info2=0, info3=0;
+    
 	NALU_t *n;
 	int buffersize=100000;
 
@@ -169,7 +172,7 @@ int simplest_h264_parser(char *url){
 	FILE *myout=stdout;
 
 	h264bitstream=fopen(url, "rb+");
-	if (h264bitstream==NULL){
+    if (h264bitstream==NULL){
 		printf("Open file error\n");
 		return 0;
 	}
@@ -181,7 +184,7 @@ int simplest_h264_parser(char *url){
 	}
 
 	n->max_size=buffersize;
-	n->buf = (char*)calloc (buffersize, sizeof (char));
+	n->buf = (char*)calloc (buffersize, sizeof (char));//shen qing
 	if (n->buf == NULL){
 		free (n);
 		printf ("AllocNALU: n->buf");
@@ -197,7 +200,7 @@ int simplest_h264_parser(char *url){
 	while(!feof(h264bitstream)) 
 	{
 		int data_lenth;
-		data_lenth=GetAnnexbNALU(n);
+		data_lenth=GetAnnexbNALU(n ,h264bitstream, &info2, &info3);
 
 		char type_str[20]={0};
 		switch(n->nal_unit_type){

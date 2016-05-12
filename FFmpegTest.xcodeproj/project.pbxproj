@@ -22,6 +22,7 @@
 		5D6F203E1CCF75D100DFD88F /* audioPCMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F203D1CCF75D100DFD88F /* audioPCMManager.m */; };
 		5D776A7D1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb in Resources */ = {isa = PBXBuildFile; fileRef = 5D776A7C1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb */; };
 		5D776A7F1CE1C6890049720D /* NocturneNo2inEflat_44.1k_s16le.pcm in Resources */ = {isa = PBXBuildFile; fileRef = 5D776A7E1CE1C48A0049720D /* NocturneNo2inEflat_44.1k_s16le.pcm */; };
+		5DC183111CE4833400D1087B /* sintel.h264 in Resources */ = {isa = PBXBuildFile; fileRef = 5D776A801CE1DA3B0049720D /* sintel.h264 */; };
 		B4BC04E61C1081820024BAE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC04E51C1081820024BAE9 /* main.m */; };
 		B4BC04E91C1081820024BAE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC04E81C1081820024BAE9 /* AppDelegate.m */; };
 		B4BC04EC1C1081820024BAE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC04EB1C1081820024BAE9 /* ViewController.m */; };
@@ -96,6 +97,7 @@
 		5D6F203D1CCF75D100DFD88F /* audioPCMManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioPCMManager.m; sourceTree = "<group>"; };
 		5D776A7C1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = susheview2_640x480_rgb24.rgb; sourceTree = "<group>"; };
 		5D776A7E1CE1C48A0049720D /* NocturneNo2inEflat_44.1k_s16le.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = NocturneNo2inEflat_44.1k_s16le.pcm; sourceTree = "<group>"; };
+		5D776A801CE1DA3B0049720D /* sintel.h264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sintel.h264; sourceTree = "<group>"; };
 		B4BC04E11C1081820024BAE9 /* FFmpegTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FFmpegTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BC04E51C1081820024BAE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4BC04E71C1081820024BAE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				B4BC062D1C12B1FD0024BAE9 /* CheeziPuffs.mov */,
 				B4BC069C1C26D3C30024BAE9 /* receive.flv */,
 				5D776A7C1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb */,
+				5D776A801CE1DA3B0049720D /* sintel.h264 */,
 				B4E93D341C2D9F0B00C1083A /* 11.pcm */,
 				B4E93D2E1C2C281900C1083A /* 林俊杰-背对背拥抱.mp3 */,
 				B4E93D2C1C285BC400C1083A /* bigbuckbunny_480x272.h265 */,
@@ -856,6 +859,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DC183111CE4833400D1087B /* sintel.h264 in Resources */,
 				5D776A7F1CE1C6890049720D /* NocturneNo2inEflat_44.1k_s16le.pcm in Resources */,
 				5D33231F1CDC3AF200E03072 /* war3end.mp4 in Resources */,
 				5D3323201CDC3AF200E03072 /* 11.pcm in Resources */,

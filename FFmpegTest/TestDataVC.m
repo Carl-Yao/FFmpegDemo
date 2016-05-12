@@ -13,7 +13,7 @@
 //
 #import "simplest_mediadata_flv.cpp"
 //
-//#import "simplest_mediadata_h264.cpp"
+#import "simplest_mediadata_h264.cpp"
 //
 //#import "simplest_mediadata_udp.cpp"
 

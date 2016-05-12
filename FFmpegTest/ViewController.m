@@ -26,7 +26,7 @@ int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int
 int simplest_rgb24_split(char *url,char *urlR,char *urlG,char *urlB, int w, int h,int num);
 int simplest_rgb24_to_yuv420(char *url_in, int w, int h,int num,char *url_out);
 int simplest_pcm32le_split(char *url, char *outUrl_L,char *outUrl_R);
-
+int simplest_h264_parser(char *url);
 @interface ViewController ()
 {
     NSLock *synlock;
@@ -131,6 +131,15 @@ int simplest_pcm32le_split(char *url, char *outUrl_L,char *outUrl_R);
     [btn11 setTitle:@"PCM处理" forState:UIControlStateNormal];
     [btn11 addTarget:self action:@selector(clickPCMButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn11];
+    
+    UIButton *btn21 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn21.backgroundColor = [UIColor redColor];
+    btn21.frame = CGRectMake(100, 400, 100, 50);
+    [btn21 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn21 setTitle:@"H264处理" forState:UIControlStateNormal];
+    [btn21 addTarget:self action:@selector(clickH264Button) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn21];
+    
 }
 - (IBAction)clickDecodeButton:(id)sender {
     [MediaManager decoder];
@@ -176,6 +185,9 @@ int simplest_pcm32le_split(char *url, char *outUrl_L,char *outUrl_R);
     simplest_pcm32le_split([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"tdjm.pcm"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"tdjmL.pcm"] UTF8String], [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"tdjmR.pcm"] UTF8String]);
 }
 
+- (void)clickH264Button{
+    simplest_h264_parser([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"sintel.h264"] UTF8String]);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
