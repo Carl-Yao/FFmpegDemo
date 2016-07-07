@@ -12,7 +12,7 @@
 //#import "audioPCMManager.h"
 #import "MediaPlayer.h"
 #import "MediaManager.h"
-
+#import "AudioPlayerViewController.h"
 
 /**
  * Split Y, U, V planes in YUV420P file.
@@ -132,6 +132,14 @@ int simplest_h264_parser(char *url);
     [btn11 addTarget:self action:@selector(clickPCMButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn11];
     
+    UIButton *btn20 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn20.backgroundColor = [UIColor redColor];
+    btn20.frame = CGRectMake(0, 400, 100, 50);
+    [btn20 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn20 setTitle:@"视频编码" forState:UIControlStateNormal];
+    [btn20 addTarget:self action:@selector(clickYUVToH264Button) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn20];
+    
     UIButton *btn21 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn21.backgroundColor = [UIColor redColor];
     btn21.frame = CGRectMake(100, 400, 100, 50);
@@ -140,6 +148,14 @@ int simplest_h264_parser(char *url);
     [btn21 addTarget:self action:@selector(clickH264Button) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn21];
     
+    
+    UIButton *btn31 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn31.backgroundColor = [UIColor redColor];
+    btn31.frame = CGRectMake(0, 500, 100, 50);
+    [btn31 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn31 setTitle:@"音频demo" forState:UIControlStateNormal];
+    [btn31 addTarget:self action:@selector(clickAudioButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn31];
 }
 - (IBAction)clickDecodeButton:(id)sender {
     [MediaManager decoder];
@@ -186,11 +202,22 @@ int simplest_h264_parser(char *url);
 }
 
 - (void)clickH264Button{
-    simplest_h264_parser([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"sintel.h264"] UTF8String]);
+    simplest_h264_parser([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"src02.h264"] UTF8String]);//sintel.h264
 }
+
+- (void)clickYUVToH264Button{
+    [MediaManager YUVConvertH264];
+}
+
+- (void)clickAudioButton{
+    AudioPlayerViewController *vc = [[AudioPlayerViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

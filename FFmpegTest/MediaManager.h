@@ -13,4 +13,5 @@
 + (void)transcoder;
 + (void)pushstream;
 + (void)pullstream;
++ (void)YUVConvertH264;
 @end

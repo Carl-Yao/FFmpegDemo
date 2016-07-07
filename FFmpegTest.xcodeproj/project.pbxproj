@@ -18,10 +18,14 @@
 		5D33231F1CDC3AF200E03072 /* war3end.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5D3322E61CD30E3200E03072 /* war3end.mp4 */; };
 		5D3323201CDC3AF200E03072 /* 11.pcm in Resources */ = {isa = PBXBuildFile; fileRef = B4E93D341C2D9F0B00C1083A /* 11.pcm */; };
 		5D3323231CDC3F4000E03072 /* MediaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3323221CDC3F4000E03072 /* MediaManager.m */; };
+		5D6DC8CE1D0E91550072123F /* AudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6DC8CD1D0E91550072123F /* AudioPlayerViewController.m */; };
+		5D6DC8D01D0E9BDE0072123F /* tap.aif in Resources */ = {isa = PBXBuildFile; fileRef = 5D6DC8CF1D0E9B020072123F /* tap.aif */; };
+		5D6DC9031D0F980D0072123F /* playAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6DC9021D0F980D0072123F /* playAudio.m */; };
 		5D6F203B1CCF126100DFD88F /* VideoPictureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F203A1CCF126100DFD88F /* VideoPictureManager.m */; };
 		5D6F203E1CCF75D100DFD88F /* audioPCMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F203D1CCF75D100DFD88F /* audioPCMManager.m */; };
 		5D776A7D1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb in Resources */ = {isa = PBXBuildFile; fileRef = 5D776A7C1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb */; };
 		5D776A7F1CE1C6890049720D /* NocturneNo2inEflat_44.1k_s16le.pcm in Resources */ = {isa = PBXBuildFile; fileRef = 5D776A7E1CE1C48A0049720D /* NocturneNo2inEflat_44.1k_s16le.pcm */; };
+		5DAC236B1D2D0D060099BD30 /* AudioUnitRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC236A1D2D0D060099BD30 /* AudioUnitRecord.m */; };
 		5DC183111CE4833400D1087B /* sintel.h264 in Resources */ = {isa = PBXBuildFile; fileRef = 5D776A801CE1DA3B0049720D /* sintel.h264 */; };
 		B4BC04E61C1081820024BAE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC04E51C1081820024BAE9 /* main.m */; };
 		B4BC04E91C1081820024BAE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC04E81C1081820024BAE9 /* AppDelegate.m */; };
@@ -91,6 +95,11 @@
 		5D3322EE1CD3102500E03072 /* TestMediaProcessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMediaProcessVC.m; sourceTree = "<group>"; };
 		5D3323211CDC3F4000E03072 /* MediaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaManager.h; sourceTree = "<group>"; };
 		5D3323221CDC3F4000E03072 /* MediaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaManager.m; sourceTree = "<group>"; };
+		5D6DC8CC1D0E91550072123F /* AudioPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayerViewController.h; sourceTree = "<group>"; };
+		5D6DC8CD1D0E91550072123F /* AudioPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerViewController.m; sourceTree = "<group>"; };
+		5D6DC8CF1D0E9B020072123F /* tap.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = tap.aif; sourceTree = "<group>"; };
+		5D6DC9011D0F980D0072123F /* playAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playAudio.h; sourceTree = "<group>"; };
+		5D6DC9021D0F980D0072123F /* playAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playAudio.m; sourceTree = "<group>"; };
 		5D6F20391CCF126100DFD88F /* VideoPictureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPictureManager.h; sourceTree = "<group>"; };
 		5D6F203A1CCF126100DFD88F /* VideoPictureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPictureManager.m; sourceTree = "<group>"; };
 		5D6F203C1CCF75D100DFD88F /* audioPCMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioPCMManager.h; sourceTree = "<group>"; };
@@ -98,6 +107,8 @@
 		5D776A7C1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = susheview2_640x480_rgb24.rgb; sourceTree = "<group>"; };
 		5D776A7E1CE1C48A0049720D /* NocturneNo2inEflat_44.1k_s16le.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = NocturneNo2inEflat_44.1k_s16le.pcm; sourceTree = "<group>"; };
 		5D776A801CE1DA3B0049720D /* sintel.h264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sintel.h264; sourceTree = "<group>"; };
+		5DAC23691D2D0D060099BD30 /* AudioUnitRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitRecord.h; sourceTree = "<group>"; };
+		5DAC236A1D2D0D060099BD30 /* AudioUnitRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUnitRecord.m; sourceTree = "<group>"; };
 		B4BC04E11C1081820024BAE9 /* FFmpegTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FFmpegTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BC04E51C1081820024BAE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4BC04E71C1081820024BAE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -414,8 +425,14 @@
 				5D3322DC1CD2FA3600E03072 /* Data */,
 				B4BC04E71C1081820024BAE9 /* AppDelegate.h */,
 				B4BC04E81C1081820024BAE9 /* AppDelegate.m */,
+				5DAC23691D2D0D060099BD30 /* AudioUnitRecord.h */,
+				5DAC236A1D2D0D060099BD30 /* AudioUnitRecord.m */,
+				5D6DC9011D0F980D0072123F /* playAudio.h */,
+				5D6DC9021D0F980D0072123F /* playAudio.m */,
 				5D3322ED1CD3102500E03072 /* TestMediaProcessVC.h */,
 				5D3322EE1CD3102500E03072 /* TestMediaProcessVC.m */,
+				5D6DC8CC1D0E91550072123F /* AudioPlayerViewController.h */,
+				5D6DC8CD1D0E91550072123F /* AudioPlayerViewController.m */,
 				B4BC04EA1C1081820024BAE9 /* ViewController.h */,
 				B4BC04EB1C1081820024BAE9 /* ViewController.m */,
 				5D3323211CDC3F4000E03072 /* MediaManager.h */,
@@ -426,6 +443,7 @@
 				5D3322E61CD30E3200E03072 /* war3end.mp4 */,
 				5D776A7E1CE1C48A0049720D /* NocturneNo2inEflat_44.1k_s16le.pcm */,
 				B4BC062D1C12B1FD0024BAE9 /* CheeziPuffs.mov */,
+				5D6DC8CF1D0E9B020072123F /* tap.aif */,
 				B4BC069C1C26D3C30024BAE9 /* receive.flv */,
 				5D776A7C1CE1BEE60049720D /* susheview2_640x480_rgb24.rgb */,
 				5D776A801CE1DA3B0049720D /* sintel.h264 */,
@@ -859,6 +877,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D6DC8D01D0E9BDE0072123F /* tap.aif in Resources */,
 				5DC183111CE4833400D1087B /* sintel.h264 in Resources */,
 				5D776A7F1CE1C6890049720D /* NocturneNo2inEflat_44.1k_s16le.pcm in Resources */,
 				5D33231F1CDC3AF200E03072 /* war3end.mp4 in Resources */,
@@ -903,15 +922,18 @@
 				5D3322D91CD2F66A00E03072 /* simplest_mediadata_udp.cpp in Sources */,
 				5D3322D81CD2F66A00E03072 /* simplest_mediadata_h264.cpp in Sources */,
 				B4BC04E91C1081820024BAE9 /* AppDelegate.m in Sources */,
+				5DAC236B1D2D0D060099BD30 /* AudioUnitRecord.m in Sources */,
 				5D6F203E1CCF75D100DFD88F /* audioPCMManager.m in Sources */,
 				5D3322D61CD2F66A00E03072 /* simplest_mediadata_aac.cpp in Sources */,
 				5D3322E51CD3016900E03072 /* TestDataVC.m in Sources */,
+				5D6DC8CE1D0E91550072123F /* AudioPlayerViewController.m in Sources */,
 				5D3322DF1CD2FD0000E03072 /* MediaPlayer.m in Sources */,
 				5D3322DB1CD2F95F00E03072 /* simplest_mediadata_raw.cpp in Sources */,
 				5D3322EF1CD3102500E03072 /* TestMediaProcessVC.m in Sources */,
 				5D3322D71CD2F66A00E03072 /* simplest_mediadata_flv.cpp in Sources */,
 				5D6F203B1CCF126100DFD88F /* VideoPictureManager.m in Sources */,
 				5D3323231CDC3F4000E03072 /* MediaManager.m in Sources */,
+				5D6DC9031D0F980D0072123F /* playAudio.m in Sources */,
 				B4BC04E61C1081820024BAE9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,6 +1073,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/FFmpegTest/include";
 				INFOPLIST_FILE = FFmpegTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1067,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/FFmpegTest/include";
 				INFOPLIST_FILE = FFmpegTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1083,6 +1107,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FFmpegTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kugou.FFmpegTestTests;
@@ -1095,6 +1120,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FFmpegTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kugou.FFmpegTestTests;

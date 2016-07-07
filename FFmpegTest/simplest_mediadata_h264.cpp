@@ -1,20 +1,20 @@
 /**
- * ×î¼òµ¥µÄÊÓÒôÆµÊý¾Ý´¦ÀíÊ¾Àý
+ * â—ŠÃ“ÂºÃšÂµâ€¢ÂµÆ’Â â€â€œÃ™âˆ†ÂµÂ ËÃ¦â€ºÂ¥Â¶Â¿ÃŒÂ Ã¦Â¿Ë
  * Simplest MediaData Test
  *
- * À×Ïöæè Lei Xiaohua
+ * Â¿â—ŠÅ“Ë†ÃŠÃ‹ Lei Xiaohua
  * leixiaohua1020@126.com
- * ÖÐ¹ú´«Ã½´óÑ§/Êý×ÖµçÊÓ¼¼Êõ
+ * Ã·â€“Ï€Ë™Â¥Â´âˆšÎ©Â¥Ã›â€”ÃŸ/Â Ëâ—ŠÃ·ÂµÃÂ â€ÂºÂºÂ Ä±
  * Communication University of China / Digital TV Technology
  * http://blog.csdn.net/leixiaohua1020
  *
- * ±¾ÏîÄ¿°üº¬ÈçÏÂ¼¸ÖÖÊÓÒôÆµ²âÊÔÊ¾Àý£º
- *  (1)ÏñËØÊý¾Ý´¦Àí³ÌÐò¡£°üº¬RGBºÍYUVÏñËØ¸ñÊ½´¦ÀíµÄº¯Êý¡£
- *  (2)ÒôÆµ²ÉÑùÊý¾Ý´¦Àí³ÌÐò¡£°üº¬PCMÒôÆµ²ÉÑù¸ñÊ½´¦ÀíµÄº¯Êý¡£
- *  (3)H.264ÂëÁ÷·ÖÎö³ÌÐò¡£¿ÉÒÔ·ÖÀë²¢½âÎöNALU¡£
- *  (4)AACÂëÁ÷·ÖÎö³ÌÐò¡£¿ÉÒÔ·ÖÀë²¢½âÎöADTSÖ¡¡£
- *  (5)FLV·â×°¸ñÊ½·ÖÎö³ÌÐò¡£¿ÉÒÔ½«FLVÖÐµÄMP3ÒôÆµÂëÁ÷·ÖÀë³öÀ´¡£
- *  (6)UDP-RTPÐ­Òé·ÖÎö³ÌÐò¡£¿ÉÒÔ½«·ÖÎöUDP/RTP/MPEG-TSÊý¾Ý°ü¡£
+ * Â±Ã¦Å“Ã“Æ’Ã¸âˆžÂ¸âˆ«Â¨Â»ÃÅ“Â¬ÂºâˆÃ·Ã·Â â€â€œÃ™âˆ†Âµâ‰¤â€šÂ â€˜Â Ã¦Â¿ËÂ£âˆ«
+ *  (1)Å“Ã’Ã€Ã¿Â ËÃ¦â€ºÂ¥Â¶Â¿ÃŒâ‰¥Ãƒâ€“ÃšÂ°Â£âˆžÂ¸âˆ«Â¨RGBâˆ«Ã•YUVÅ“Ã’Ã€Ã¿âˆÃ’Â Î©Â¥Â¶Â¿ÃŒÂµÆ’âˆ«Ã˜Â ËÂ°Â£
+ *  (2)â€œÃ™âˆ†Âµâ‰¤â€¦â€”Ë˜Â ËÃ¦â€ºÂ¥Â¶Â¿ÃŒâ‰¥Ãƒâ€“ÃšÂ°Â£âˆžÂ¸âˆ«Â¨PCMâ€œÃ™âˆ†Âµâ‰¤â€¦â€”Ë˜âˆÃ’Â Î©Â¥Â¶Â¿ÃŒÂµÆ’âˆ«Ã˜Â ËÂ°Â£
+ *  (3)H.264Â¬ÃŽÂ¡Ëœâˆ‘Ã·Å’Ë†â‰¥Ãƒâ€“ÃšÂ°Â£Ã¸â€¦â€œâ€˜âˆ‘Ã·Â¿ÃŽâ‰¤Â¢Î©â€šÅ’Ë†NALUÂ°Â£
+ *  (4)AACÂ¬ÃŽÂ¡Ëœâˆ‘Ã·Å’Ë†â‰¥Ãƒâ€“ÃšÂ°Â£Ã¸â€¦â€œâ€˜âˆ‘Ã·Â¿ÃŽâ‰¤Â¢Î©â€šÅ’Ë†ADTSÃ·Â°Â°Â£
+ *  (5)FLVâˆ‘â€šâ—ŠâˆžâˆÃ’Â Î©âˆ‘Ã·Å’Ë†â‰¥Ãƒâ€“ÃšÂ°Â£Ã¸â€¦â€œâ€˜Î©Â´FLVÃ·â€“ÂµÆ’MP3â€œÃ™âˆ†ÂµÂ¬ÃŽÂ¡Ëœâˆ‘Ã·Â¿ÃŽâ‰¥Ë†Â¿Â¥Â°Â£
+ *  (6)UDP-RTPâ€“â‰ â€œÃˆâˆ‘Ã·Å’Ë†â‰¥Ãƒâ€“ÃšÂ°Â£Ã¸â€¦â€œâ€˜Î©Â´âˆ‘Ã·Å’Ë†UDP/RTP/MPEG-TSÂ ËÃ¦â€ºâˆžÂ¸Â°Â£
  *
  * This project contains following samples to handling multimedia data:
  *  (1) Video pixel data handling program. It contains several examples to handle RGB and YUV data.
@@ -116,8 +116,9 @@ int GetAnnexbNALU (NALU_t *nalu, FILE *h264bitstream, int* info2, int* info3){
 	*info2 = 0;
 	*info3 = 0;
 
+    //éåŽ†è¿™ä¸ªå¼€å§‹æ ‡ç¤ºåˆ°ä¸‹ä¸€ä¸ªå¼€å§‹æ ‡ç¤ºï¼ŒæŒ‰å­—èŠ‚å­˜å…¥bufä¸­ï¼Œå¹¶ç”¨posè®°å½•ä½ç½®
 	while (!StartCodeFound){
-		if (feof (h264bitstream)){
+		if (feof (h264bitstream)){//åˆ¤æ–­æ˜¯å¦ä¸ºæ–‡ä»¶æµç»“å°¾
 			nalu->len = (pos-1)-nalu->startcodeprefix_len;
 			memcpy (nalu->buf, &Buf[nalu->startcodeprefix_len], nalu->len);     
 			nalu->forbidden_bit = nalu->buf[0] & 0x80; //1 bit
@@ -130,13 +131,14 @@ int GetAnnexbNALU (NALU_t *nalu, FILE *h264bitstream, int* info2, int* info3){
 		*info3 = FindStartCode3(&Buf[pos-4]);
 		if(*info3 != 1)
 			*info2 = FindStartCode2(&Buf[pos-3]);
-		StartCodeFound = (*info2 == 1 || *info3 == 1);
+		StartCodeFound = (*info2 == 1 || *info3 == 1);//æ‰¾ä¸‹ä¸€ä¸ªå¼€å§‹æ ‡ç¤º
 	}
 
 	// Here, we have found another start code (and read length of startcode bytes more than we should
 	// have.  Hence, go back in the file
 	rewind = (*info3 == 1)? -4 : -3;
 
+    //h264bitstreamå°†æŒ‡å‘ä»¥SEEK_CURä¸ºåŸºå‡†ï¼Œåç§»rewindï¼ˆæŒ‡é’ˆåç§»é‡ï¼‰ä¸ªå­—èŠ‚çš„ä½ç½®
 	if (0 != fseek (h264bitstream, rewind, SEEK_CUR)){
 		free(Buf);
 		printf("GetAnnexbNALU: Cannot fseek in the bit stream file");
@@ -184,7 +186,8 @@ int simplest_h264_parser(char *url){
 	}
 
 	n->max_size=buffersize;
-	n->buf = (char*)calloc (buffersize, sizeof (char));//shen qing
+	n->buf = (char*)calloc (buffersize, sizeof (char));//ç”³è¯·100000ä¸ªå­—èŠ‚
+    
 	if (n->buf == NULL){
 		free (n);
 		printf ("AllocNALU: n->buf");
