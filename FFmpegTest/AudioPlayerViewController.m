@@ -12,6 +12,10 @@
 #import <AVFoundation/AVAudioRecorder.h>
 #import "playAudio.h"
 #import "AudioUnitRecord.h"
+#import <AVFoundation/AVAsset.h>
+#import <AVFoundation/AVComposition.h>
+#import <AVFoundation/AVMediaFormat.h>
+#import <AVFoundation/AVAssetExportSession.h>
 
 @implementation AudioPlayerViewController{
     AVAudioPlayer *newPlayer;
@@ -66,6 +70,14 @@
     [btn4 setTitle:@"AudioUnitRecord" forState:UIControlStateNormal];
     [btn4 addTarget:self action:@selector(unitRecord) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn4];
+    
+    UIButton *btn5 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn5.backgroundColor = [UIColor redColor];
+    btn5.frame = CGRectMake(200, 400, 180, 50);
+    [btn5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn5 setTitle:@"ConvertVideoAndAudio" forState:UIControlStateNormal];
+    [btn5 addTarget:self action:@selector(ConvertVideoAndAudio) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn5];
 }
 - (void)systemSoundPlay{
     
@@ -95,8 +107,12 @@
 
 - (void)AudioQueueServices{
     NSString *soundFilePath =
-    [[NSBundle mainBundle] pathForResource: @"林俊杰-背对背拥抱"
-                                    ofType: @"mp3"];
+    [[NSBundle mainBundle] pathForResource: @"等你等了那么久_MQ"
+                                    ofType: @"m4a"];
+
+//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *Pathes = path.lastObject;
+//    NSString *filePath = [Pathes stringByAppendingPathComponent:@"testaudio5.pcm"];
     audio= [[playAudio alloc]initWithAudio:soundFilePath];
 }
 
@@ -145,5 +161,72 @@
         [record start];
     }
     
+}
+
+- (void)ConvertVideoAndAudio{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString* savePath = [docDir stringByAppendingString:@"/export.mov"];
+    NSString *audioFilePath =
+    [[NSBundle mainBundle] pathForResource: @"2"
+                                    ofType: @"m4a"];
+    NSString *videoFilePath =
+    [[NSBundle mainBundle] pathForResource: @"1"
+                                    ofType: @"mp4"];
+    //                         [self.audioPlayer startConvert:mvPath destPath:exportPath accompanyPath:newPath format:KPLAYER_FORMAT_FLV];
+    [self convertAudio:audioFilePath video:videoFilePath exportPath:savePath];
+}
+- (void)convertAudio:(NSString *)audioPath video:(NSString*)videoPath exportPath:(NSString*)exportPath
+{
+    //    AVMutableComposition *compostion = [AVMutableComposition composition];
+    //    AVMutableCompositionTrack *video = [compostion addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:0];
+    //    [video insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo].firstObject atTime:kCMTimeZero error:nil];
+    //    因为是视频,所以原来的Audio要全部改成Video
+    //    AVAssetExportSession *session = [[AVAssetExportSession alloc]initWithAsset:compostion presetName:AVAssetExportPresetMediumQuality];
+    //
+    //    return;
+    NSURL* audioUrl = [[NSURL alloc] initFileURLWithPath:audioPath];
+    NSURL* videoUrl = [[NSURL alloc] initFileURLWithPath:videoPath];
+    
+    AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audioUrl options:nil];
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:videoUrl options:nil];
+    
+    AVMutableComposition *mixComposition = [AVMutableComposition composition];
+    AVMutableCompositionTrack *compositionCommentaryTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    [compositionCommentaryTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration)   ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]   atTime:kCMTimeZero error:nil];
+    
+    AVMutableCompositionTrack *compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    NSArray * arr = [videoAsset tracksWithMediaType:AVMediaTypeVideo];
+    [compositionVideoTrack  insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration)
+                                    ofTrack:[arr count]>0?[arr firstObject]:nil  atTime:kCMTimeZero error:nil];
+    
+    AVAssetExportSession *_assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetMediumQuality];
+    //    NSString *videoName = @"export.mov";
+    //    NSString *exportPath = [NSTemporaryDirectory() stringByAppendingPathComponent:videoName];
+    NSURL *exportUrl = [NSURL fileURLWithPath:exportPath];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]){//如果已经有的话，就把他弄走
+        [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
+    }
+    
+    _assetExport.outputFileType = AVFileTypeQuickTimeMovie;//导出的视频格式是mov格式
+    _assetExport.outputURL = exportUrl;
+    _assetExport.shouldOptimizeForNetworkUse = YES;
+    
+    [_assetExport exportAsynchronouslyWithCompletionHandler:
+     ^(void ) {
+         // your completion code here
+         if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath])
+         {
+             // 调用播放方法
+             //             [self playAudio:[NSURL fileURLWithPath:outPutFilePath]];
+         }
+         else
+         {
+             NSLog(@"输出错误");
+         }
+     }
+     
+     ];
 }
 @end

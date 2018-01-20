@@ -74,7 +74,7 @@ static OSStatus recordingCallback(void *inRefCon,
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *Pathes = path.lastObject;
-    NSString *filePath = [Pathes stringByAppendingPathComponent:@"testaudio5.pcm2"];
+    NSString *filePath = [Pathes stringByAppendingPathComponent:@"testaudio5.pcm"];
     const char *str = [filePath UTF8String];
     pFile = fopen(str, "w");
     

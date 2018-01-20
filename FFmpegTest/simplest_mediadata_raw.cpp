@@ -40,7 +40,7 @@ extern int simplest_h264_parser(char *url);
  * Analysis FLV file
  * @param url    Location of input FLV file.
  */
-extern int simplest_flv_parser(char *url);
+extern int simplest_flv_parser(char *url,char *outputFlv,char *outputMp3);
 
 /**
  * Analysis AAC file
@@ -53,6 +53,10 @@ extern int simplest_aac_parser(char *url);
  * @param url    RTP URL
  */
 extern int simplest_udp_parser(int port);
+
+extern int h264ConvertYuv(char *inFile, char *outFile);
+
+extern int simplest_mp3_parser(char *inFile);
 
 /**
  * Generate RGB24 colorbar.
@@ -239,7 +243,6 @@ int simplest_rgb24_split(char *url,char *urlR,char *urlG,char *urlB, int w, int 
 	FILE *fp3=fopen(urlB,"wb+");
 
 	unsigned char *pic=(unsigned char *)malloc(w*h*3);
-
 	for(int i=0;i<num;i++){
 
 		fread(pic,1,w*h*3,fp);
@@ -247,6 +250,7 @@ int simplest_rgb24_split(char *url,char *urlR,char *urlG,char *urlB, int w, int 
 		for(int j=0;j<w*h*3;j=j+3){
 			//R
 			fwrite(pic+j,1,1,fp1);
+            
 			//G
 			fwrite(pic+j+1,1,1,fp2);
 			//B
@@ -441,21 +445,39 @@ int simplest_yuv420_split(char *url,char *urlY,char *urlU,char *urlV, int w, int
 	FILE *fp1=fopen(urlY,"wb+");
 	FILE *fp2=fopen(urlU,"wb+");
 	FILE *fp3=fopen(urlV,"wb+");
-
+    
 	unsigned char *pic=(unsigned char *)malloc(w*h*3/2);
 
-	for(int i=0;i<num;i++){
+    unsigned char *pic1=(unsigned char *)malloc(w*h*3/2);
+    unsigned char *pic2=(unsigned char *)malloc(w*h*3/2);
+    unsigned char *pic3=(unsigned char *)malloc(w*h*3/2);
 
-		fread(pic,1,w*h*3/2,fp);
+	for(int i=0;i<num;i++){
+        __int64_t offset = fp->_offset;
+        fread(pic1,1,w*h*3/2,fp);
+        
+        fseek(fp, offset, SEEK_SET);
+        fread(pic2,1,w*h*3/2,fp);
+        fseek(fp, offset, SEEK_SET);
+        fread(pic3,1,w*h*3/2,fp);
+        
+        memset(pic1+w*h, 128, w*h/2);
+        memset(pic2, 128, w*h);
+        memset(pic2+w*h*5/4, 128, w*h/4);
+        memset(pic3, 128, w*h*5/4);
 		//Y
-		fwrite(pic,1,w*h,fp1);
+		fwrite(pic1,1,w*h*3/2,fp1);
+        
 		//U
-		fwrite(pic+w*h,1,w*h/4,fp2);
-		//V
-		fwrite(pic+w*h*5/4,1,w*h/4,fp3);
+        fwrite(pic2,1,w*h*3/2,fp2);
+        //V
+        fwrite(pic3,1,w*h*3/2,fp3);
 	}
 
 	free(pic);
+    free(pic1);
+    free(pic2);
+    free(pic3);
 	fclose(fp);
 	fclose(fp1);
 	fclose(fp2);

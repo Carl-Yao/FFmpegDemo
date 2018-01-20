@@ -104,6 +104,8 @@ static void BufferCallback(void *inUserData,AudioQueueRef inAQ,
     Float32 gain=1.0;
     //设置音量
     AudioQueueSetParameter(queue, kAudioQueueParam_Volume, gain);
+    UInt32 tSize = 2;
+    AudioQueueSetProperty(queue, kAudioQueueDeviceProperty_NumberChannels, &tSize, sizeof(tSize));
     //队列处理开始，此后系统开始自动调用回调(Callback)函数
     AudioQueueStart(queue, nil);
     return self;

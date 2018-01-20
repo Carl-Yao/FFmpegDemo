@@ -14,4 +14,7 @@
 + (void)pushstream;
 + (void)pullstream;
 + (void)YUVConvertH264;
++ (void)H264converteYUV;
++ (int)mp3ConvertPCM;
++ (int)pcmConvertMp3;
 @end

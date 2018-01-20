@@ -19,7 +19,6 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 
-
 #define QUEUE_BUFFER_SIZE 4 //队列缓冲个数
 #define MIN_SIZE_PER_FRAME 2000 //每侦最小数据长度
 

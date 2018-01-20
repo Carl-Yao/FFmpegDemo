@@ -69,7 +69,7 @@ uint reverse_bytes(byte *p, char c) {
  * @param url    Location of input FLV file.
  */
 
-int simplest_flv_parser(char *url){
+int simplest_flv_parser(char *url,char *outputFlv,char *outputMp3){
 
 	//whether output audio/video stream
 	int output_a=1;
@@ -189,7 +189,7 @@ int simplest_flv_parser(char *url){
 
 			//if the output file hasn't been opened, open it.
 			if(output_a!=0&&afh == NULL){
-				afh = fopen("output.mp3", "wb");
+				afh = fopen(outputMp3, "wb");
 			}
 
 			//TagData - First Byte Data
@@ -240,9 +240,9 @@ int simplest_flv_parser(char *url){
 			//if the output file hasn't been opened, open it.
 			if (vfh == NULL&&output_v!=0) {
 				//write the flv header (reuse the original file's hdr) and first previoustagsize
-					vfh = fopen("output.flv", "wb");
-					fwrite((char *)&flv,1, sizeof(flv),vfh);
-					fwrite((char *)&previoustagsize_z,1,sizeof(previoustagsize_z),vfh);
+                vfh = fopen(outputFlv, "wb");
+                fwrite((char *)&flv,1, sizeof(flv),vfh);
+                fwrite((char *)&previoustagsize_z,1,sizeof(previoustagsize_z),vfh);
 			}
 #if 0
 			//Change Timestamp
